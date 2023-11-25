@@ -1,0 +1,10 @@
+GET http://localhost:8000/api/comments/
+content-type: application/json
+
+###投稿
+PUT http://localhost:8000/api/comments/63dc7ffa3868f101620e11ed/comment
+content-type: application/json
+
+{
+"userId":"63bab921f2674346eb311bd1"
+}

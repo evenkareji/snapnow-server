@@ -1,0 +1,70 @@
+{
+  "name": "afim",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://snapnow.vercel.app/",
+  "type": "module",
+  "dependencies": {
+    "@babel/core": "^7.16.0",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^1.41.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.2",
+    "express-session": "^1.17.3",
+    "fs-extra": "^10.0.0",
+    "googleapis": "^128.0.0",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^6.8.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.7",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.18",
+    "@types/multer": "^1.4.8",
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-named-asset-import": "^0.3.8",
+    "babel-preset-react-app": "^10.0.1",
+    "dotenv-expand": "^5.1.0",
+    "eslint-config-next": "^14.0.3",
+    "eslint-config-prettier": "^9.0.0",
+    "file-loader": "^6.2.0",
+    "nodemon": "^2.0.20",
+    "ts-loader": "^9.4.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "server": "nodemon --loader ts-node/esm ./app.ts"
+  },
+  "eslintConfig": {
+    "extends": [
+      "next",
+      "next/core-web-vitals"
+    ],
+    "rules": {
+      "react/display-name": "off"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

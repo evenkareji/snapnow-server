@@ -1,0 +1,32 @@
+
+###ユーザー登録
+POST http://localhost:3005/auth/register
+content-type: application/json
+
+{
+  "username":"メイウェザー",
+  "email":"mei@gmail.com",
+  "password":"20030806mei"
+}
+
+
+
+
+###ログイン
+POST  http://localhost:3005/auth/login
+content-type: application/json
+
+{
+  "email":"siner@gmail.com",
+  "password":"20030806siner"
+}
+
+
+###ユーザーpass更新
+PUT http://localhost:3005/auth/register
+content-type: application/json
+
+{
+ "email":"mafin@gmail.com",
+   "password":"90007700"
+}

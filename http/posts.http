@@ -1,0 +1,55 @@
+
+###投稿
+POST http://localhost:8000/api/posts/
+content-type: application/json
+
+{
+"userId":"63bab921f2674346eb311bd1",
+  "desc":"I blieve in my soul!!"
+}
+###全投稿
+GET http://localhost:8000/api/posts/
+content-type: application/json
+
+
+
+###投稿編集
+PUT http://localhost:3005/posts/63bb98301f4246d4ee643885
+content-type: application/json
+
+{
+"userId":"63bab9c2f2674346eb311bd3",
+  "desc":"edit hello world"
+}
+
+###投稿削除
+DELETE http://localhost:8000/api/posts/63de0140ddbbe6ce4e82511d
+content-type: application/json
+
+{
+"userId":"63d8d386608f407f50998597"
+}
+
+###投稿取得
+GET http://localhost:8000/api/posts/63bb95d8f2a1c4fb204a2cf2
+content-type: application/json
+
+{
+
+}
+
+###いいね
+PUT http://localhost:3005/posts/63bb95d8f2a1c4fb204a2cf2/like
+content-type: application/json
+
+{
+"userId":"63bab921f2674346eb311bd1"
+}
+
+###自分の投稿を取得
+GET http://localhost:3005/posts/timeline/all
+content-type: application/json
+
+{
+ "userId":"63bab9c2f2674346eb311bd3"
+}

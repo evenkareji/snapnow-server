@@ -1,0 +1,41 @@
+###ユーザー取得
+GET http://localhost:3005/users/63bb8bc3e897a856a452cee2
+content-type: application/json
+
+{
+
+}
+
+###全フォロー
+GET http://localhost:8000/users/time/63bb8bc3e897a856a452cee2
+content-type: application/json
+###全フォロワー
+GET http://localhost:8000/users/timeline/63bb8bc3e897a856a452cee2
+content-type: application/json
+
+### 更新
+PUT http://localhost:3000/users/63e599a4a6fa77df84e9c188
+content-type: application/json
+
+{
+ "userId":"63e599a4a6fa77df84e9c188",
+ "desc":"hello",
+ "profileImg":"person/ak.png"
+}
+
+
+###フォローAPI
+PUT http://localhost:8000/users/63de45211e06d71cff07bed8/follow
+content-type: application/json
+
+{
+  "userId":"63bb8bc3e897a856a452cee2"
+}
+
+###フォロー解除api
+PUT http://localhost:8000/users/63de45211e06d71cff07bed8/unfollow
+content-type: application/json
+
+{
+  "userId":"63bb8bc3e897a856a452cee2"
+}
