@@ -4,11 +4,11 @@
     "target": "es5",
     "module": "ESNext",
     "strict": false,
+    "allowImportingTsExtensions": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "noImplicitReturns": true,
-    "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
@@ -17,6 +17,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "moduleResolution": "bundler",
     "incremental": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -26,13 +27,6 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "src/components/templates/Footer.jsx",
-    "server/routes/auth.ts",
-    "server/helpers/mailer.js"
-  ],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules"]
 }
