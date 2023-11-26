@@ -46,6 +46,9 @@
   "scripts": {
     "server": "nodemon --loader ts-node/esm ./app.ts"
   },
+  "engines": {
+    "node": ">=18.7.18 <19.0.0"
+  },
   "eslintConfig": {
     "extends": [
       "next",
