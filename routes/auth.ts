@@ -1,11 +1,11 @@
 import express, { Request, Response, NextFunction } from 'express';
-import User from '../models/User';
-import Code from '../models/Code';
+import User from '../models/User.js';
+import Code from '../models/Code.js';
+import { sendResetCode, sendVerificationEmail } from '../helpers/mailer.js';
+import { generateCode } from '../helpers/generateCode.js';
+import { generateToken } from '../helpers/tokens.js';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
-import { sendResetCode, sendVerificationEmail } from '../helpers/mailer';
-import { generateCode } from '../helpers/generateCode';
-import { generateToken } from '../helpers/tokens';
 const router = express.Router();
 
 interface ExtendedRequest extends Request {

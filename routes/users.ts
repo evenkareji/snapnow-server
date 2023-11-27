@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import User from '../models/User';
+import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 // ログイン維持
 router.get('/getUser', (req: any, res: any) => {

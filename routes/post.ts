@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
-import Post from '../models/Post.mjs';
-import User from '../models/User';
+import Post from '../models/Post.js';
+import User from '../models/User.js';
 // 投稿
 router.post('/', async (req, res) => {
   try {

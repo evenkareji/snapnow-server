@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Strategy as LocalStrategy } from 'passport-local';
-import User from './models/User';
+import User from './models/User.js';
 
 async function passportConfig(passport) {
   passport.use(
