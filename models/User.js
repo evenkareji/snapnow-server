@@ -57,7 +57,7 @@ const UserSchema = new mongoose.Schema(
     },
     desc: {
       type: String,
-      max: 10,
+      max: 50,
     },
 
     verified: {

@@ -22,6 +22,8 @@ router.get('/getUser', (req: any, res: any) => {
 router.post('/activate', async (req: any, res: any) => {
   try {
     const { token } = req.body;
+    console.log(token, 'activate');
+
     const user = jwt.verify(token, process.env.TOKEN_SECRET);
 
     const check: any = await User.findById(user.id);

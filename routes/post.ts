@@ -1,5 +1,6 @@
 import express from 'express';
 const router = express.Router();
+import jwt from 'jsonwebtoken';
 import Post from '../models/Post.js';
 import User from '../models/User.js';
 // 投稿
@@ -50,18 +51,38 @@ router.put('/:id', async (req, res) => {
   }
 });
 // 投稿削除api
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req: any, res: any) => {
   try {
-    //投稿したidを取得
-    const post: any = await Post.findById(req.params.id);
-    if (post.userId === req.body.userId) {
+    const postId = req.params.id;
+    // Authorizationヘッダーからトークンを取得
+    const token = req.headers.authorization?.split(' ')[1];
+    const user = jwt.verify(token, process.env.TOKEN_SECRET);
+
+    if (!token) {
+      return res.status(401).json('認証トークンがありません');
+    }
+    let userId;
+    try {
+      // トークンの検証
+      userId = user.id;
+    } catch (error) {
+      return res.status(403).json('無効なトークン');
+    }
+
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json('投稿が見つかりません');
+    }
+
+    if (post.userId.toString() === userId) {
       await post.deleteOne();
       res.status(200).json('投稿を削除しました');
     } else {
-      res.status(403).json('投稿を削除できません');
+      res.status(403).json('投稿を削除する権限がありません');
     }
   } catch (err) {
-    res.status(403).json(err);
+    res.status(500).json('サーバーエラー');
   }
 });
 // 自分投稿取得
