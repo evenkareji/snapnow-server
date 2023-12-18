@@ -63,7 +63,6 @@ router.delete('/:id', async (req: any, res: any) => {
     }
     let userId;
     try {
-      // トークンの検証
       userId = user.id;
     } catch (error) {
       return res.status(403).json('無効なトークン');
@@ -95,6 +94,24 @@ router.get('/:id', async (req, res) => {
     return res.status(500).json(err);
   }
 });
+
+// フォローした人の投稿
+router.get('/timeline/all', async (req, res) => {
+  try {
+    const currentUser: any = await User.findById(req.body.userId);
+    const userPosts = await Post.find({ userId: currentUser._id });
+    const friendsPosts = await Promise.all(
+      currentUser.followings.map((friendId) => {
+        return Post.find({ userId: friendId });
+      }),
+    );
+    return res.status(200).json(userPosts.concat(...friendsPosts));
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
 // いいねを押す
 router.put('/:id/like', async (req, res) => {
   try {
