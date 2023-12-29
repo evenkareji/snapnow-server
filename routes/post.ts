@@ -96,9 +96,9 @@ router.get('/:id', async (req, res) => {
 });
 
 // フォローした人の投稿
-router.get('/timeline/all', async (req, res) => {
+router.get('/timeline/:userId', async (req, res) => {
   try {
-    const currentUser: any = await User.findById(req.body.userId);
+    const currentUser: any = await User.findById(req.params.userId);
     const userPosts = await Post.find({ userId: currentUser._id });
     const friendsPosts = await Promise.all(
       currentUser.followings.map((friendId) => {

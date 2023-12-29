@@ -72,7 +72,7 @@ app.use(fileUpload({ useTempFiles: true }));
 
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
-app.use('/posts', postRouter);
+app.use('/posts', postRouter); //postsになってしまったので叩く時postじゃだめ
 app.use('/upload', uploadRouter);
 
 // app.get('*', function (req, res) {
