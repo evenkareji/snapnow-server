@@ -5,6 +5,7 @@ const {
     Types: { Mixed },
   },
 } = mongoose;
+const { ObjectId } = mongoose.Schema;
 
 const postSchema = new Schema(
   {
@@ -15,6 +16,7 @@ const postSchema = new Schema(
     },
     desc: {
       type: String,
+      text: true,
       max: 50,
     },
     img: {
@@ -24,9 +26,20 @@ const postSchema = new Schema(
       type: Array,
       default: [],
     },
+    search: [
+      {
+        text: {
+          type: String,
+          required: true,
+        },
+        createdAt: {
+          type: Date,
+          required: true,
+        },
+      },
+    ],
   },
-  { timestamps: true },
-  { versionKey: false },
+  { timestamps: true, versionKey: false },
 );
 
 const Post = mongoose.model('Post', postSchema);

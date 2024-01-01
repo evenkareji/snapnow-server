@@ -183,4 +183,18 @@ router.put('/:id/unfollow', async (req: any, res: any) => {
   }
 });
 
+// ユーザー検索
+router.post('/search/:searchUser', async (req: any, res: any) => {
+  try {
+    const searchUser = req.params.searchUser;
+
+    const results = await User.find({
+      username: { $regex: searchUser, $options: 'i' },
+    }).select('username profileImg');
+
+    return res.json(results);
+  } catch (error) {
+    console.log(error);
+  }
+});
 export default router;

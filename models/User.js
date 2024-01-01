@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema(
       min: 1,
       max: 15,
       trim: true,
+      text: true,
       unique: true,
     },
     email: {
@@ -64,6 +65,19 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    search: [
+      {
+        user: {
+          type: ObjectId,
+          ref: 'User',
+          required: true,
+        },
+        createdAt: {
+          type: Date,
+          required: true,
+        },
+      },
+    ],
   },
   { timestamps: true },
   { versionKey: false },
