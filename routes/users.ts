@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
+
 // ログイン維持
 router.get('/getUser', (req: any, res: any) => {
   try {
@@ -58,8 +59,8 @@ router.get('/followings/:username', async (req, res) => {
   try {
     const currentUser: any = await User.findById(req.params.username);
     const followingUsers = await Promise.all(
-      currentUser.followings.map((followingrId) => {
-        return User.find({ _id: followingrId });
+      currentUser.followings.map((followingId) => {
+        return User.findById(followingId); // ここを変更
       }),
     );
 
@@ -74,7 +75,7 @@ router.get('/followers/:username', async (req, res) => {
     const currentUser: any = await User.findById(req.params.username);
     const followUsers = await Promise.all(
       currentUser.followers.map((followerId) => {
-        return User.find({ _id: followerId });
+        return User.findById(followerId);
       }),
     );
 
