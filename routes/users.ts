@@ -191,7 +191,8 @@ router.post('/search/:searchUser', async (req: any, res: any) => {
 
     const results = await User.find({
       username: { $regex: searchUser, $options: 'i' },
-    }).select('username profileImg');
+    });
+    // .select('username profileImg followings')
 
     return res.json(results);
   } catch (error) {
