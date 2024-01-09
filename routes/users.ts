@@ -199,4 +199,51 @@ router.post('/search/:searchUser', async (req: any, res: any) => {
     console.log(error);
   }
 });
+// フォローユーザー検索
+router.post('/followings/search/:searchUser', async (req: any, res: any) => {
+  try {
+    const searchUser = req.params.searchUser;
+    const userFollowings = req.body.user.followings;
+
+    if (!userFollowings || userFollowings.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'フォローしているユーザーがいません。' });
+    }
+
+    const results = await User.find({
+      _id: { $in: userFollowings },
+      username: { $regex: searchUser, $options: 'i' },
+    }).select('username profileImg followings');
+
+    return res.json(results);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'サーバーエラーが発生しました。' });
+  }
+});
+// フォロワー検索
+router.post('/followers/search/:searchUser', async (req: any, res: any) => {
+  try {
+    const searchUser = req.params.searchUser;
+    const userFollowers = req.body.user.followers;
+
+    if (!userFollowers || userFollowers.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'フォローしているユーザーがいません。' });
+    }
+
+    const results = await User.find({
+      _id: { $in: userFollowers },
+      username: { $regex: searchUser, $options: 'i' },
+    }).select('username profileImg followings');
+
+    return res.json(results);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'サーバーエラーが発生しました。' });
+  }
+});
+
 export default router;
