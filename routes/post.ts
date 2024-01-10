@@ -140,4 +140,18 @@ router.put('/:id/like', async (req, res) => {
   }
 });
 
+router.post('/search/:searchPost', async (req: any, res: any) => {
+  try {
+    const searchPost = req.params.searchPost;
+
+    const results = await Post.find({
+      desc: { $regex: searchPost, $options: 'i' },
+    }).select('desc　userId likes');
+
+    return res.json(results);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 export default router;
