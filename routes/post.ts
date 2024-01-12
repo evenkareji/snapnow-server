@@ -95,6 +95,19 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// いいねした人の投稿
+router.get('/likes/:userId', async (req, res) => {
+  try {
+    const ProfileUserId = req.params.userId;
+
+    const likingPosts = await Post.find({ likes: ProfileUserId });
+
+    return res.status(200).json(likingPosts);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
 // フォローした人の投稿
 router.get('/timeline/:userId', async (req, res) => {
   try {
