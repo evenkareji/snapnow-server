@@ -37,19 +37,40 @@ router.get('/', async (req, res) => {
 // 投稿編集api
 router.put('/:id', async (req, res) => {
   try {
-    const post: any = await Post.findById(req.params.id);
-    if (post.userId === req.body.userId) {
-      await post.updateOne({
-        $set: req.body,
-      });
+    const token = req.headers.authorization?.split(' ')[1];
+    const user = jwt.verify(token, process.env.TOKEN_SECRET);
+
+    if (!token) {
+      return res.status(401).json('認証トークンがありません');
+    }
+    let userId;
+    try {
+      userId = user.id;
+      console.log(req.body.userId);
+      console.log(userId);
+    } catch (error) {
+      return res.status(403).json('無効なトークン');
+    }
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json('投稿が見つかりません');
+    }
+
+    if (post.userId.toString() === userId) {
+      await post.updateOne({ $set: { desc: req.body.desc } });
+
       return res.status(200).json('投稿編集に成功しました');
     } else {
-      return res.status(200).json('あなたは他人の投稿に編集できません');
+      return res.status(403).json('あなたは他人の投稿に編集できません');
     }
   } catch (err) {
-    return res.status(500).json(err);
+    console.error(err);
+    return res
+      .status(500)
+      .json({ message: 'サーバーエラーが発生しました', error: err });
   }
 });
+
 // 投稿削除api
 router.delete('/:id', async (req: any, res: any) => {
   try {

@@ -59,6 +59,7 @@ const UserSchema = new mongoose.Schema(
     desc: {
       type: String,
       max: 50,
+      default: '自己紹介はまだ記入されていません',
     },
 
     verified: {
