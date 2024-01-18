@@ -2,7 +2,7 @@
   "name": "afim",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://snapnow.vercel.app/",
+  "homepage": "snapnow-client.vercel.app/login",
   "type": "module",
   "dependencies": {
     "@babel/core": "^7.16.0",
