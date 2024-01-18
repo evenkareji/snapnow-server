@@ -83,7 +83,7 @@ router.get(
 router.get(
   '/google/callback',
   passport.authenticate('google', {
-    successRedirect: process.env.CLIENT_URL,
+    successRedirect: process.env.CLIENT_URL || 'http://localhost:3000',
     failureRedirect: '/login/failed',
   }),
 );
