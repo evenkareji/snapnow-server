@@ -45,7 +45,7 @@
     "typescript": "^5.3.2"
   },
   "scripts": {
-    "server": "nodemon --loader ts-node/esm ./app.ts",
+    "server": "nodemon ts-node/esm ./app.ts",
     "clean": "rimraf ./dist/*",
     "tsc": "tsc",
     "build": "npm-run-all clean tsc",
