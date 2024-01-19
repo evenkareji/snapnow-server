@@ -33,6 +33,17 @@ app.use(
   }),
 );
 
+app.use((req, res, next) => {
+  if (
+    req.header('x-forwarded-proto') !== 'https' &&
+    process.env.NODE_ENV === 'production'
+  ) {
+    res.redirect(`https://${req.header('host')}${req.url}`);
+  } else {
+    next();
+  }
+});
+
 const port = process.env.PORT || 8000;
 
 mongoose
