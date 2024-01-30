@@ -20,7 +20,10 @@ const postSchema = new Schema(
       max: 50,
     },
     img: {
-      type: Mixed, // ここでMixed型を使用
+      type: Mixed,
+    },
+    audioUrl: {
+      type: String,
     },
     likes: {
       type: Array,

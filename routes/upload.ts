@@ -166,6 +166,28 @@ const uploadToCloudinary = async (file, path) => {
   });
 };
 
+// 音声ファイルを保存;
+router.post('/upload-audio', (req: any, res: any) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('ファイルがありません。');
+  }
+
+  const audioFile = req.files.audio;
+
+  cloudinary.uploader.upload(
+    audioFile.tempFilePath,
+    {
+      resource_type: 'video', // Cloudinaryでは音声ファイルもvideoリソースとして扱います
+    },
+    (error, result) => {
+      if (error) {
+        return res.status(500).send('アップロードに失敗しました。');
+      }
+      res.send({ url: result!.url });
+    },
+  );
+});
+
 const removeTmp = (path) => {
   fs.unlink(path, (err) => {
     if (err) throw err;

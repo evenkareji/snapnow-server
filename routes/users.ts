@@ -108,10 +108,15 @@ router.put('/:id', async (req, res) => {
 router.get('/', async (req, res) => {
   const userId = req.query.userId;
   const username = req.query.username;
+
   try {
     const user: any = userId
       ? await User.findById(userId)
       : await User.findOne({ username: username });
+
+    if (!user) {
+      return res.status(404).json({ message: 'ユーザーが見つかりません。' });
+    }
     const { password, googleId, method, email, isAdmin, ...other } = user._doc;
     return res.status(200).json(other);
   } catch (err) {
