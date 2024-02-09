@@ -180,7 +180,7 @@ router.post('/search/:searchPost', async (req: any, res: any) => {
 
     const results = await Post.find({
       desc: { $regex: searchPost, $options: 'i' },
-    }).select('desc　userId likes');
+    }).select('desc　userId likes audioUrl createdAt');
 
     return res.json(results);
   } catch (error) {
